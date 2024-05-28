@@ -8,12 +8,13 @@ import Home from "./pages/Home";
 import MyCart from "./pages/MyCart";
 import NewProduct from "./pages/NewProduct";
 import ProductDetail from "./pages/ProductDetail";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-    errorElement: <p>Not found...</p>,
+    element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -21,15 +22,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        elemnt: <AllProducts />,
+        element: <AllProducts />,
       },
       {
         path: "/carts",
-        elemnt: <MyCart />,
+        element: <MyCart />,
       },
       {
         path: "/products/new",
-        elemnt: <NewProduct />,
+        element: <NewProduct />,
       },
       {
         path: "/products/:id",
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
