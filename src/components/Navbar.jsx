@@ -2,8 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineFilterVintage } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
+import { login, logout } from "../api/firebase";
+import Button from "./ui/Button";
+import User from "./User";
+import { useAuthContext } from "./context/AuthContextProvider";
 
 export default function Navbar() {
+  const { user, login, logout } = useAuthContext();
+
   return (
     <header className="flex justify-between bg-primary  text-primary_text px-10 py-5">
       <Link className="flex items-center gap-1 text-3xl" to="/">
@@ -16,7 +22,9 @@ export default function Navbar() {
         <Link className="text-xl" to="/products/new">
           <TiPencil />
         </Link>
-        <button>Login</button>
+        {user && <User user={user} />}
+        {!user && <Button text={"Login"} onClick={login} />}
+        {user && <Button text={"Logout"} onClick={logout} />}
       </nav>
     </header>
   );
